@@ -7,16 +7,14 @@ interface IUseMovies {
 }
 
 async function getMovies(type = 'movie', page = 1) {
-    const moviesList = await fetch(`https://api.themoviedb.org/3/${type}/popular?language=pt-BR&page=${page}`, {
+    const moviesList = await fetch(`https://api.themoviedb.org/3/${type}/popular?language=pt-BR&page=${page}?limit=10`, {
       headers: {
         Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`
       }
     })
-  
+
     const { results } = await moviesList.json()
 
-    console.log(results)
-  
     return results
 }
 

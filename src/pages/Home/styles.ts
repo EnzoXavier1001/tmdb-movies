@@ -26,3 +26,10 @@ export const Title = styled.h1`
         text-decoration: underline;
     }
 `
+
+export const Pagination = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2.2rem;
+`
