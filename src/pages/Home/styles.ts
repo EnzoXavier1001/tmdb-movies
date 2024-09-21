@@ -11,7 +11,7 @@ export const HomeContainer = styled.div`
 export const CardContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
+    gap: 2rem;
 `
 
 export const Title = styled.h1`

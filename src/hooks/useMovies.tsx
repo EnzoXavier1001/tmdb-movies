@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query"
 import { IMovie } from "../types/movie"
+import { api } from "../services/api";
 
 interface IUseMovies {
     type: string;
@@ -7,15 +8,13 @@ interface IUseMovies {
 }
 
 async function getMovies(type = 'movie', page = 1) {
-    const moviesList = await fetch(`https://api.themoviedb.org/3/${type}/popular?language=pt-BR&page=${page}?limit=10`, {
-      headers: {
-        Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`
-      }
-    })
+  const { data } = await api.get(`/${type}/popular?language=pt-BR&page=${page}?limit=10`, {
+    headers: {
+      Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`
+    }
+  })
 
-    const { results } = await moviesList.json()
-
-    return results
+  return data.results
 }
 
 export const useMovies = ({ type, page }: IUseMovies) => {

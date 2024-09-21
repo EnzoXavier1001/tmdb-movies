@@ -9,12 +9,14 @@ type CardProps = {
 
 export const Card = ({ movie }: CardProps) => {
     const releaseDate =  (movie.release_date ?? movie.first_air_date)!
-
+    
     return (
         <C.Card>
             <img src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`} alt="" />
-            <h2>{movie.original_title ?? movie.original_name}</h2>
-            <p>{format(releaseDate, "dd 'de' MMMM 'de' yyyy", { locale: pt })}</p>
+            <C.CardContent>
+                <h2>{movie.original_title ?? movie.original_name}</h2>
+                <p>{format(releaseDate, "dd 'de' MMMM 'de' yyyy", { locale: pt })}</p>
+            </C.CardContent>
         </C.Card>
     )
 }
