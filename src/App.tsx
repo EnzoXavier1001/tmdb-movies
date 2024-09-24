@@ -4,7 +4,6 @@ import { ReactQueryProvider } from './ReactQueryProvider'
 import { GlobalStyles } from './styles/globalStyles'
 
 function App() {
-  
   return (
     <ReactQueryProvider>
       <GlobalStyles />
