@@ -68,6 +68,7 @@ export const WrapperInput = styled.div`
     outline: none;
     border: none;
     border-radius: 8px;
+    margin-right: 1.2rem;
   }
 
   button {

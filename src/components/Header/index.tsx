@@ -33,7 +33,7 @@ export const Header = () => {
           <img src={logoImg} alt="Logo TMDB" />
           <ul>
             <C.ListItem>
-              <NavLink to="/discover">Descubra</NavLink>
+              <NavLink to="/">Descubra</NavLink>
             </C.ListItem>
             <C.ListItem>
               <NavLink to="/movies">Filmes</NavLink>

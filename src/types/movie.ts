@@ -15,4 +15,5 @@ export interface IMovie {
   vote_average: number
   vote_count: string
   original_name?: string
+  genres: { id: number; name: string }[]
 }

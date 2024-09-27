@@ -3,7 +3,7 @@ import { Card } from '../../components/Card'
 import { useMovies } from '../../hooks/useMovies'
 import { useEffect, useState } from 'react'
 import { Pagination } from '../../components/Pagination'
-import { BounceLoader } from 'react-spinners'
+import { Spinner } from '../../components/Spinner'
 
 export const Home = () => {
   const [page, setPage] = useState<number>(1)
@@ -42,12 +42,7 @@ export const Home = () => {
         <span onClick={() => setType('tv')}>Séries</span>
       </C.Title>
       <C.CardContainer>
-        {isLoading && (
-          <C.ErrorContainer>
-            <BounceLoader size={100} color="#b5446e" />
-            <p>Carregando...</p>
-          </C.ErrorContainer>
-        )}
+        {isLoading && <Spinner />}
         {movies?.map((movie, index) => (
           <Card type={type} key={index} movie={movie} />
         ))}

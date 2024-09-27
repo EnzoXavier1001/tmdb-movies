@@ -34,11 +34,3 @@ export const Pagination = styled.div`
   margin-top: 2.2rem;
   flex-wrap: wrap;
 `
-
-export const ErrorContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.8rem;
-  justify-content: center;
-`
