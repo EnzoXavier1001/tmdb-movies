@@ -1,13 +1,13 @@
-import { Header } from '../../components/Header'
 import * as C from './styles'
 import { Card } from '../../components/Card'
 import { useMovies } from '../../hooks/useMovies'
 import { useEffect, useState } from 'react'
 import { Pagination } from '../../components/Pagination'
+import { BounceLoader } from 'react-spinners'
 
 export const Home = () => {
   const [page, setPage] = useState<number>(1)
-  const [type, setType] = useState<string>('movie')
+  const [type, setType] = useState<'movie' | 'tv'>('movie')
   const { refetch, data: movies, isLoading } = useMovies({ type, page })
 
   useEffect(() => {
@@ -20,6 +20,7 @@ export const Home = () => {
 
   function showPagination(valor: number) {
     const pages = []
+
     for (let i = 1; i < valor; i++) {
       pages.push(
         <Pagination
@@ -35,19 +36,23 @@ export const Home = () => {
   }
 
   return (
-    <>
-      <Header />
-      <C.HomeContainer>
-        <C.Title>
-          Escolha um <span onClick={() => setType('movie')}>Filme</span> ou{' '}
-          <span onClick={() => setType('tv')}>Séries</span>
-        </C.Title>
-        <C.CardContainer>
-          {isLoading && <p>Carregando...</p>}
-          {movies?.map((movie, index) => <Card key={index} movie={movie} />)}
-        </C.CardContainer>
-        <C.Pagination>{showPagination(10)}</C.Pagination>
-      </C.HomeContainer>
-    </>
+    <C.HomeContainer>
+      <C.Title>
+        Escolha um <span onClick={() => setType('movie')}>Filme</span> ou{' '}
+        <span onClick={() => setType('tv')}>Séries</span>
+      </C.Title>
+      <C.CardContainer>
+        {isLoading && (
+          <C.ErrorContainer>
+            <BounceLoader size={100} color="#b5446e" />
+            <p>Carregando...</p>
+          </C.ErrorContainer>
+        )}
+        {movies?.map((movie, index) => (
+          <Card type={type} key={index} movie={movie} />
+        ))}
+      </C.CardContainer>
+      {movies && <C.Pagination>{showPagination(movies.length)}</C.Pagination>}
+    </C.HomeContainer>
   )
 }

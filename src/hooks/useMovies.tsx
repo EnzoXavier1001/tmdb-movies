@@ -8,16 +8,21 @@ interface IUseMovies {
 }
 
 async function getMovies(type = 'movie', page = 1) {
-  const { data } = await api.get(
-    `/${type}/popular?language=pt-BR&page=${page}?limit=10`,
-    {
-      headers: {
-        Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`,
+  try {
+    const { data } = await api.get(
+      `/${type}/popular?language=pt-BR&page=${page}?limit=10`,
+      {
+        headers: {
+          Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`,
+        },
       },
-    },
-  )
+    )
 
-  return data.results
+    return data.results
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
+    throw new Error(error?.response?.data?.status_message)
+  }
 }
 
 export const useMovies = ({ type, page }: IUseMovies) => {
