@@ -26,11 +26,16 @@ async function getMovies(type = 'movie', page = 1) {
 }
 
 export const useMovies = ({ type, page }: IUseMovies) => {
-  return useQuery<IMovie[]>({
-    queryKey: ['movies', page],
+  const query = useQuery<IMovie[]>({
+    queryKey: ['movies'],
     queryFn: () => getMovies(type, page),
 
     staleTime: 0,
     refetchOnWindowFocus: false,
   })
+
+  return {
+    ...query,
+    movies: query.data,
+  }
 }

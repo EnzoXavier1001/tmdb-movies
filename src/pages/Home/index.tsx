@@ -8,7 +8,7 @@ import { BounceLoader } from 'react-spinners'
 export const Home = () => {
   const [page, setPage] = useState<number>(1)
   const [type, setType] = useState<'movie' | 'tv'>('movie')
-  const { refetch, data: movies, isLoading } = useMovies({ type, page })
+  const { refetch, movies, isLoading } = useMovies({ type, page })
 
   useEffect(() => {
     refetch()
